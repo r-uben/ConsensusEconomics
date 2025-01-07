@@ -29,6 +29,9 @@ env.bak/
 venv.bak/
 .python-version
 
+.DS_Store
+
+
 # Data folder
 data/
 sensitive_info/
