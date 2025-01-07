@@ -1,4 +1,4 @@
- from typing import List
+from typing import List
 from pandas import DataFrame
 from consensus_economics.utils.date_format import DateFormatUtils
 from consensus_economics.worksheets.base_worksheet import BaseWorksheet

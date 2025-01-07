@@ -8,13 +8,25 @@ from tqdm import tqdm
 import pandas as pd
 import os
 import traceback
+from itertools import product
 
 def process_forex(args):
-    date, error_log_path = args
+    date, error_log_path, reload = args
     try:
-        print(f"\nProcessing date: {date}")  # Debug print
+        folder = PathFormatUtils.get_file_path(Paths().processed, f"{date[:4]}/forex")
+        filename = f"{folder}/{date}.csv"
+        
+        # Skip if file exists and not reloading
+        if os.path.exists(filename) and not reload:
+            return pd.DataFrame()
+            
         forex_data = ForexWorksheet(date)
         result = forex_data.forecasters_data
+        
+        if not result.empty:
+            os.makedirs(folder, exist_ok=True)
+            result.drop_duplicates().to_csv(filename, index=False)
+            
         return result
     except Exception as e:
         error_msg = f"Error processing forex data for {date}:\n{str(e)}\n{traceback.format_exc()}"
@@ -23,13 +35,9 @@ def process_forex(args):
             error_log.write(error_msg + "\n")
         return pd.DataFrame()
 
-def get_forex_data_for_date(date):
-    error_log_path = Paths().processed / "error_log.txt"
-    args = (date, error_log_path)
-    return process_forex(args)
-
 def main():
     RELOAD = input("Reload existing files? (y/n): ").lower() == 'y'
+    
     processed_path = Paths().processed 
     error_log_path = processed_path / "error_log.txt"
     
@@ -40,35 +48,27 @@ def main():
     with open(error_log_path, "w") as error_log:
         error_log.write("")
 
+    # Generate all year-month combinations
     years = range(1990, 2025)
     months = range(1, 13)
-    total_tasks = len(years) * len(months)
+    dates = [
+        DateFormatUtils.get_date(year, month) 
+        for year, month in product(years, months)
+    ]
     
-    with tqdm(total=total_tasks, desc="Processing Forex Data") as pbar:
-        for year in years:
-            for month in months:
-                try:
-                    date = DateFormatUtils.get_date(year, month)
-                    folder = PathFormatUtils.get_file_path(processed_path, f"{year}/forex")
-
-                    os.makedirs(folder, exist_ok=True)
-                    filename = f"{folder}/{date}.csv"
-                    
-                    if not os.path.exists(filename) or RELOAD:
-                        print(f"\nProcessing {filename}")  # Debug print
-                        df = get_forex_data_for_date(date)
-                        if not df.empty:
-                            df.drop_duplicates().to_csv(filename, index=False)
-                        else:
-                            print(f"Empty DataFrame for {date}")
-                    
-                    pbar.update(1)
-                except Exception as e:
-                    error_msg = f"Error in main loop for {year}-{month}:\n{str(e)}\n{traceback.format_exc()}"
-                    print(error_msg)
-                    with open(error_log_path, "a") as error_log:
-                        error_log.write(error_msg + "\n")
-                    pbar.update(1)
+    # Create args list for parallel processing, including RELOAD
+    args_list = [(date, error_log_path, RELOAD) for date in dates]
+    
+    # Initialize parallel processor
+    processor = ParallelProcessor(error_log_path)
+    
+    # Process in parallel
+    results = processor.process_in_parallel(
+        process_func=process_forex,
+        args_list=args_list,
+        desc="Processing Forex Data",
+        total=len(args_list)
+    )
 
 if __name__ == "__main__":
     main()
