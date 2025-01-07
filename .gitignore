@@ -29,9 +29,20 @@ env.bak/
 venv.bak/
 .python-version
 
+# System files
 .DS_Store
+*.log
 
-
-# Data folder
+# Data and sensitive information
 data/
 sensitive_info/
+*.xlsx
+*.csv
+*.eml
+*.pdf
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
