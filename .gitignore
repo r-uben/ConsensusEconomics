@@ -31,3 +31,4 @@ venv.bak/
 
 # Data folder
 data/
+sensitive_info/

@@ -4,7 +4,10 @@ version = "0.1.0"
 description = ""
 authors = ["Rubén Fernández Fuertes <fernandezfuertesruben@gmail.com>"]
 readme = "README.md"
-packages = [{ include = "consensus_economics", from = "src" }]
+packages = [
+    { include = "consensus_economics", from = "src" },
+    { include = "mains" }
+]
 
 
 [tool.poetry.dependencies]
@@ -18,10 +21,11 @@ bs4 = "^0.0.2"
 
 
 [tool.poetry.scripts]
-decompress_files = "mains.decompress_files:main"
-get_professional_forecasts = "mains.get_professional_forecasts:main"
-save_to_bucket = "mains.save_to_bucket:main"
-clean_xlsx_folder = "mains.clean_xlsx_folder:main"
+decompress_files = "mains.preprocessing.decompress_files:main"
+clean_xlsx_folder = "mains.preprocessing.clean_xlsx_folder:main"
+get_country_forecasts = "mains.getters.get_country_forecasts:main"
+get_forex_forecasts = "mains.getters.get_forex_forecasts:main"
+save_to_bucket = "mains.storage.save_to_bucket:main"
 
 [build-system]
 requires = ["poetry-core"]

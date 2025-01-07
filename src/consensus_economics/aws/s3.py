@@ -2,6 +2,9 @@ import boto3
 import pandas as pd
 import json
 
+# Note: This code requires proper AWS credentials configuration to work
+# See: https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html
+
 class S3:
 
     def __init__(self) -> None:
