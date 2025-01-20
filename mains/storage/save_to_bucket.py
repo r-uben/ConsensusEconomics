@@ -1,6 +1,7 @@
 from consensus_economics.aws.bucket_manager import BucketManager
 from consensus_economics.paths import Paths
 from datetime import datetime
+import argparse
 
 import os
 from tqdm import tqdm
@@ -61,27 +62,54 @@ def upload_file(args):
     )
     return s3_key
 
+def get_files_for_year(processed_dir: str, year: int) -> list:
+    """Get all files for a specific year."""
+    files_to_upload = []
+    year_dir = os.path.join(processed_dir, str(year))
+    
+    if not os.path.exists(year_dir):
+        print(f"No data found for year {year}")
+        return files_to_upload
+    
+    for root, _, files in os.walk(year_dir):
+        for file in files:
+            file_path = os.path.join(root, file)
+            files_to_upload.append(file_path)
+    
+    return files_to_upload
+
 def main():
+    # Set up argument parser
+    parser = argparse.ArgumentParser(description='Upload Consensus Economics data to S3 bucket')
+    parser.add_argument('--year', type=int, help='Year to process (e.g., 2024)')
+    parsed_args = parser.parse_args()
+    
+    if not parsed_args.year:
+        print("Please specify a year using --year parameter")
+        return
+    
     # Initialize bucket
     bucket = BucketManager("consensus-economics")
     paths = Paths()
     
     clean_bucket(bucket)
     
-    # Walk through all files in processed directory
-    processed_dir = paths.processed 
+    # Get files for the specified year
+    processed_dir = paths.processed
+    files_to_upload = get_files_for_year(processed_dir, parsed_args.year)
     
-    # Collect all files first
-    files_to_upload = []
-    for root, _, files in os.walk(processed_dir):
-        for file in files:
-            file_path = os.path.join(root, file)
-            files_to_upload.append((bucket, file_path, processed_dir))
+    if not files_to_upload:
+        return
+    
+    print(f"Found {len(files_to_upload)} files to upload for year {parsed_args.year}")
+    
+    # Prepare arguments for upload
+    upload_args = [(bucket, file_path, processed_dir) for file_path in files_to_upload]
     
     # Use ThreadPoolExecutor for parallel uploads
     with ThreadPoolExecutor(max_workers=10) as executor:
         futures = []
-        for args in files_to_upload:
+        for args in upload_args:
             future = executor.submit(upload_file, args)
             futures.append(future)
         
@@ -89,7 +117,7 @@ def main():
         for future in tqdm(
             concurrent.futures.as_completed(futures),
             total=len(futures),
-            desc="Uploading files"
+            desc=f"Uploading files for {parsed_args.year}"
         ):
             try:
                 s3_key = future.result()
