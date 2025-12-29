@@ -1,67 +1,112 @@
-import calendar
-import zipfile
-import os 
+"""File processing utilities for Consensus Economics Excel files."""
 
-from consensus_economics.utils.check_format import CheckFormatUtils
-from consensus_economics.utils.path_format import PathFormatUtils
+import calendar
+import os
+import zipfile
+from pathlib import Path
 
 from tqdm import tqdm
 
 from consensus_economics.paths import Paths
+from consensus_economics.utils.check_format import CheckFormatUtils
 
 
+class FileProcessor:
+    """
+    Handles decompression and renaming of Consensus Economics data files.
 
-class Constructor():
-    
-    def __init__(self):
-        super().__init__()
-        self.raw_zip_path = Paths().raw / "zip"
-        self.raw_xlsx_path = Paths().raw / "xlsx"
+    Workflow:
+        1. Read zip files from external storage (raw_zip)
+        2. Extract xlsx to external storage (raw_xlsx)
+        3. Rename and copy to local working directory (xlsx)
+    """
 
-        self.processed_xlsx_path = Paths().processed / "xlsx"
+    def __init__(self) -> None:
+        self.paths = Paths()
 
-    def extract_zip(self, filename: str):
-        file_path = PathFormatUtils.get_file_path(self.raw_zip_path, filename)
-        with zipfile.ZipFile(file_path, 'r') as zip_ref:
-            zip_ref.extractall(self.raw_xlsx_path)
-    
-    def decompress_files(self):
-        # Create xlsx directory if it doesn't exist
-        os.makedirs(self.raw_xlsx_path, exist_ok=True)
-        
-        for filename in os.listdir(self.raw_zip_path):
-            if CheckFormatUtils.iszip(filename): self.extract_zip(filename)
-        print("All files have been decompressed.")
+    def extract_zip(self, filename: str) -> None:
+        """Extract a single zip file to the raw xlsx directory."""
+        file_path = self.paths.raw_zip / filename
+        with zipfile.ZipFile(file_path, "r") as zip_ref:
+            zip_ref.extractall(self.paths.raw_xlsx)
+
+    def decompress_files(self) -> None:
+        """
+        Decompress all zip files from external storage.
+
+        Requires external volume to be mounted.
+        """
+        if not self.paths.external_available:
+            raise RuntimeError(
+                f"External storage not available: {self.paths.external}\n"
+                "Please mount the volume and try again."
+            )
+
+        os.makedirs(self.paths.raw_xlsx, exist_ok=True)
+
+        zip_files = [f for f in os.listdir(self.paths.raw_zip) if CheckFormatUtils.iszip(f)]
+
+        if not zip_files:
+            print(f"No zip files found in {self.paths.raw_zip}")
+            return
+
+        for filename in tqdm(zip_files, desc="Extracting"):
+            self.extract_zip(filename)
+
+        print(f"Extracted {len(zip_files)} files.")
         self.rename_files()
 
-    def correct_date_format(self, filename: str, extension: str) -> str: # this is completely ad hoc 
-        # Move the year to the beginning of the filename
-        parts = filename.split(extension)[0]  # Remove the extension for processing
-        year = parts[-4:]  # Assuming the year is the last 4 characters before the extension
-        new_filename = year + parts[:-4].replace('cf', '') + extension  # Reconstruct the filename with the year first and remove "cf"
+    def _correct_date_format(self, filename: str, extension: str) -> str:
+        """
+        Reformat filename to have year at the beginning.
+
+        Args:
+            filename: Original filename (e.g., "cfjan2024.xlsx")
+            extension: File extension (e.g., ".xlsx")
+
+        Returns:
+            Reformatted filename (e.g., "202401.xlsx")
+        """
+        parts = filename.split(extension)[0]
+        year = parts[-4:]  # Year is last 4 characters
+        new_filename = year + parts[:-4].replace("cf", "") + extension
         return new_filename
 
-    def rename_files(self):
-        for filename in tqdm(os.listdir(self.raw_xlsx_path)):
-            if CheckFormatUtils.isxlsx(filename):
-                old_file_path = PathFormatUtils.get_file_path(self.raw_xlsx_path, filename)
-                new_filename = filename.lower()
-                
-                # Replace month names with numbers using calendar
-                for i, month_name in enumerate(calendar.month_abbr[1:], 1):
-                    new_filename = new_filename.replace(
-                        month_name.lower(), 
-                        f"{i:02d}"
-                    )
-   
-                # Move the year to the beginning
-                extension = '.xlsx'
-                new_filename = self.correct_date_format(new_filename, extension)
-                new_file_path = PathFormatUtils.get_file_path(self.processed_xlsx_path, new_filename)
-                os.makedirs(os.path.dirname(new_file_path), exist_ok=True)
-                os.replace(old_file_path, new_file_path)
+    def rename_files(self) -> None:
+        """
+        Rename xlsx files to YYYYMM format and copy to local working directory.
 
-        print("All files have been renamed.")
+        Reads from external raw_xlsx, writes to local xlsx directory.
+        """
+        os.makedirs(self.paths.xlsx, exist_ok=True)
+
+        xlsx_files = [f for f in os.listdir(self.paths.raw_xlsx) if CheckFormatUtils.isxlsx(f)]
+
+        if not xlsx_files:
+            print(f"No xlsx files found in {self.paths.raw_xlsx}")
+            return
+
+        for filename in tqdm(xlsx_files, desc="Renaming"):
+            old_file_path = self.paths.raw_xlsx / filename
+            new_filename = filename.lower()
+
+            # Replace month names with numbers
+            for i, month_name in enumerate(calendar.month_abbr[1:], 1):
+                new_filename = new_filename.replace(
+                    month_name.lower(),
+                    f"{i:02d}",
+                )
+
+            # Move year to beginning
+            new_filename = self._correct_date_format(new_filename, ".xlsx")
+            new_file_path = self.paths.xlsx / new_filename
+
+            # Copy to local (don't delete from external)
+            import shutil
+            shutil.copy2(old_file_path, new_file_path)
+
+        print(f"Renamed {len(xlsx_files)} files to {self.paths.xlsx}")
 
 
-
+# Backwards compatibility alias
+Constructor = FileProcessor

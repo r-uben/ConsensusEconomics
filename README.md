@@ -1,70 +1,127 @@
 # Consensus Economics Data Pipeline
 
-A Python package for processing and analyzing economic forecast data from Consensus Economics. This tool streamlines the extraction, transformation, and storage of both country-specific and forex forecasts.
+Python package for processing economic forecast data from Consensus Economics Excel files.
 
 ## Features
 
-- 📊 Process country-specific economic forecasts
-- 💱 Handle forex forecast data
-- 🔄 Automated data transformation pipeline
-- ☁️ AWS S3 integration for data storage
-- 📈 Excel file processing and cleaning
+- Parse country-specific economic forecasts (GDP, inflation, etc.)
+- Handle forex forecast data
+- Automated data transformation pipeline
+- Configurable country and currency lists
 
 ## Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/ConsensusEconomics.git
-cd ConsensusEconomics
+git clone https://github.com/yourusername/consensus-economics.git
+cd consensus-economics
 
-# Install dependencies using Poetry
-poetry install
+# Create virtual environment and install
+uv venv
+uv pip install -e ".[dev]"
+```
+
+## Storage Layout
+
+```
+External storage (raw downloads):
+/Volumes/Main/Library/Databases/consensus_economics/
+├── zip/          # Original zip downloads from Consensus Economics
+└── xlsx/         # Extracted raw Excel files
+
+Local (working files):
+<repo>/data/
+├── xlsx/         # Renamed YYYYMM.xlsx files (working copies)
+└── output/       # Final processed CSVs
+    ├── 2024/
+    │   ├── forecasters/202401.csv, 202402.csv, ...
+    │   └── forex/202401.csv, 202402.csv, ...
+    └── ...
 ```
 
 ## Usage
 
-The package provides several command-line scripts for data processing:
+### CLI Commands
 
 ```bash
-# Process country forecasts
-poetry run get_country_forecasts
+# Decompress raw zip files (requires external volume mounted)
+uv run decompress-files
 
-# Process forex forecasts
-poetry run get_forex_forecasts
+# Clean up duplicate xlsx files
+uv run clean-xlsx-folder
 
-# Clean Excel files
-poetry run clean_xlsx_folder
+# Extract country forecasts to CSV
+uv run get-country-forecasts --year 2024
 
-# Upload data to S3
-poetry run save_to_bucket
+# Extract forex forecasts to CSV
+uv run get-forex-forecasts --year 2024
+```
+
+### Python API
+
+```python
+from consensus_economics import CountryWorksheet, ForexWorksheet, Paths
+
+# Check paths
+paths = Paths()
+print(f"External storage: {paths.external}")
+print(f"Available: {paths.external_available}")
+print(f"Local xlsx: {paths.xlsx}")
+print(f"Output: {paths.output}")
+
+# Parse country forecast data
+worksheet = CountryWorksheet(date="202409", country="Canada")
+df = worksheet.forecasters_data
+
+# Parse forex forecast data
+forex = ForexWorksheet(date="202409")
+forex_df = forex.forecasters_data
 ```
 
 ## Project Structure
 
 ```
-ConsensusEconomics/
-├── src/consensus_economics/    # Main package
-│   ├── worksheets/            # Forecast data processors
-│   ├── aws/                   # AWS integration
-│   └── utils/                 # Utility functions
-├── mains/                     # CLI scripts
-└── data/                      # Data directory
+consensus-economics/
+├── src/consensus_economics/   # Core library
+│   ├── config.py              # Configuration (countries, currencies, paths)
+│   ├── constructor.py         # File processing
+│   ├── paths.py               # Path management
+│   ├── worksheets/            # Excel parsers
+│   │   ├── base_worksheet.py
+│   │   ├── country_worksheet.py
+│   │   └── forex_worksheet.py
+│   └── utils/                 # Utilities
+├── mains/                     # CLI entry points
+│   ├── getters/               # Data extraction
+│   └── preprocessing/         # File cleanup
+├── tests/                     # Test suite
+└── data/                      # Local working data
+    ├── xlsx/                  # Renamed xlsx files
+    └── output/                # Final CSVs
+```
+
+## Configuration
+
+Edit `src/consensus_economics/config.py` to customize:
+
+- `EXTERNAL_STORAGE` - Path to external volume for raw files
+- `COUNTRIES` - List of countries to process
+- `CURRENCY_CODES` - Currency name to ISO code mappings
+- `START_YEAR`, `END_YEAR` - Data collection range
+
+## Testing
+
+```bash
+uv run pytest tests/ -v
 ```
 
 ## Dependencies
 
-- Python 3.13+
+- Python 3.12+
 - pandas
-- boto3
-- duckdb
 - openpyxl
+- tqdm
 
 ## License
 
 Copyright © 2024 Rubén Fernández Fuertes. All Rights Reserved.
-
-This project and its contents are proprietary and confidential. No part of this project may be reproduced, distributed, or modified without explicit written permission from the author. Any contributions or modifications must be requested and approved by the author.
-
-## Author
-
-Rubén Fernández-Fuertes

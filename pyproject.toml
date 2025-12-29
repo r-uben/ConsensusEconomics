@@ -1,32 +1,43 @@
-[tool.poetry]
-name = "consensuseconomics"
-version = "0.1.0"
-description = ""
-authors = ["Rubén Fernández Fuertes <fernandezfuertesruben@gmail.com>"]
+[project]
+name = "consensus-economics"
+version = "0.2.0"
+description = "Data pipeline for processing Consensus Economics forecasts"
+authors = [{ name = "Rubén Fernández Fuertes", email = "fernandezfuertesruben@gmail.com" }]
 readme = "README.md"
-packages = [
-    { include = "consensus_economics", from = "src" },
-    { include = "mains" }
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=2.2.3",
+    "openpyxl>=3.1.2",
+    "tqdm>=4.67.1",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.13"
-boto3 = "^1.35.92"
-pandas = "^2.2.3"
-duckdb = "^1.1.3"
-openpyxl = "^3.1.2"
-tqdm = "^4.67.1"
-bs4 = "^0.0.2"
-
-
-[tool.poetry.scripts]
-decompress_files = "mains.preprocessing.decompress_files:main"
-clean_xlsx_folder = "mains.preprocessing.clean_xlsx_folder:main"
-get_country_forecasts = "mains.getters.get_country_forecasts:main"
-get_forex_forecasts = "mains.getters.get_forex_forecasts:main"
-save_to_bucket = "mains.storage.save_to_bucket:main"
+[project.scripts]
+decompress-files = "mains.preprocessing.decompress_files:main"
+clean-xlsx-folder = "mains.preprocessing.clean_xlsx_folder:main"
+get-country-forecasts = "mains.getters.get_country_forecasts:main"
+get-forex-forecasts = "mains.getters.get_forex_forecasts:main"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/consensus_economics", "mains"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]

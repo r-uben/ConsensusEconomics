@@ -1,30 +1,42 @@
-from consensus_economics.paths import Paths
+"""Clean duplicate xlsx files from processed directory."""
+
 import os
+from pathlib import Path
+
+from consensus_economics.paths import Paths
 
 
-def main():
-    # Get the processed xlsx path
+def main() -> None:
+    """
+    Remove duplicate xlsx files with numbering (e.g., "file 2.xlsx").
+
+    When files are downloaded multiple times, they may have numbers appended.
+    This script removes those duplicates, keeping the original filename.
+    """
     processed_xlsx_path = Paths().processed / "xlsx"
-    
-    # Iterate through all files in the directory
+
     for root, _, files in os.walk(processed_xlsx_path):
         for filename in files:
-            if filename.endswith('.xlsx'):
-                # Check if filename contains any " N" where N is an integer
-                for i in range(1, 10):  # Checking numbers 1-9
-                    if f" {i}" in filename:
-                        old_path = os.path.join(root, filename)
-                        # Create new filename by removing " N"
-                        new_filename = filename.replace(f" {i}", "")
-                        new_path = os.path.join(root, new_filename)
-                        
-                        # If the target file already exists, remove it
-                        if os.path.exists(new_path):
-                            os.remove(new_path)
-                        
-                        # Rename the file
-                        os.rename(old_path, new_path)
-                        break  # Break after first match since we've renamed the file
+            if not filename.endswith(".xlsx"):
+                continue
+
+            # Check for " N" pattern where N is a digit
+            for i in range(1, 10):
+                if f" {i}" not in filename:
+                    continue
+
+                old_path = Path(root) / filename
+                new_filename = filename.replace(f" {i}", "")
+                new_path = Path(root) / new_filename
+
+                # Remove target if exists, then rename
+                if new_path.exists():
+                    new_path.unlink()
+
+                old_path.rename(new_path)
+                print(f"Renamed: {filename} -> {new_filename}")
+                break
+
 
 if __name__ == "__main__":
     main()

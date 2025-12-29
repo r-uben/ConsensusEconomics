@@ -1,47 +1,32 @@
-
-
+"""Country utilities for Consensus Economics data."""
 
 from typing import List
 
+from consensus_economics.config import COUNTRIES
+
+
 class CountriesUtils:
-    def __init__(self):
-        self.__countries = None
+    """Utility class for managing country data."""
+
+    def __init__(self) -> None:
+        self._countries: List[str] = list(COUNTRIES)
 
     @property
     def countries(self) -> List[str]:
-        if self.__countries is None:
-            self.__countries = [
-                "USA",
-                "Japan",
-                "Germany",
-                "France",
-                "UK",
-                "Italy",
-                "Canada",
-                "Euro Zone",
-                "Netherlands",
-                "Norway",
-                "Spain",
-                "Sweden",
-                "Switzerland",
-                "Austria",
-                "Belgium",
-                "Denmark",
-                "Egypt",
-                "Finland",
-                "Greece",
-                "Ireland",
-                "Israel",
-                "Nigeria",
-                "Portugal",
-                "Saudi Arabia",
-                "South Africa"
-            ]
-        return self.__countries
-    
+        """Get the list of countries."""
+        return self._countries
+
     @countries.setter
     def countries(self, countries: List[str]) -> None:
-        # Add any validation logic here
+        """
+        Set the list of countries.
+
+        Args:
+            countries: List of country names
+
+        Raises:
+            ValueError: If any item is not a string
+        """
         if not all(isinstance(country, str) for country in countries):
             raise ValueError("All countries must be strings")
-        self.__countries = countries
+        self._countries = countries
