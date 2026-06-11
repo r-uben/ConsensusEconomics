@@ -27,6 +27,7 @@ clean-xlsx-folder = "mains.preprocessing.clean_xlsx_folder:main"
 get-country-forecasts = "mains.getters.get_country_forecasts:main"
 get-forex-forecasts = "mains.getters.get_forex_forecasts:main"
 consolidate-output = "mains.getters.consolidate_output:main"
+build-variable-map = "mains.mappings.build_variable_map:main"
 save-to-bucket = "mains.storage.save_to_bucket:main"
 
 [build-system]

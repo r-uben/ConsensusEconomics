@@ -10,6 +10,7 @@ import argparse
 import pandas as pd
 from tqdm import tqdm
 
+from consensus_economics.mappings import load_variable_map
 from consensus_economics.paths import Paths
 
 CATEGORICAL_COLUMNS = {
@@ -74,6 +75,52 @@ def consolidate(kind: str) -> None:
         write_variable_inventory(combined)
 
 
+def build_concepts_layer() -> None:
+    """Join the raw forecasters parquet with the variable map into a
+    convenience layer; the raw parquet itself stays vintage-faithful."""
+    source = Paths().output / "forecasters.parquet"
+    if not source.exists():
+        raise FileNotFoundError(f"{source} not found — consolidate forecasters first")
+    combined = pd.read_parquet(source)
+
+    mapping = load_variable_map()
+    mapping = mapping.assign(
+        valid_from=pd.to_datetime(mapping["valid_from"]),
+        valid_to=pd.to_datetime(mapping["valid_to"]),
+    )[
+        ["country", "raw_variable", "valid_from", "valid_to",
+         "concept_id", "concept_label", "mapping_status"]
+    ]
+
+    merged = combined.merge(
+        mapping,
+        how="left",
+        left_on=["country", "variable"],
+        right_on=["country", "raw_variable"],
+    )
+    # A raw label can map to different concepts over time — keep the row
+    # whose validity range covers the survey date
+    in_range = merged["valid_from"].notna() & merged["survey_date"].between(
+        merged["valid_from"], merged["valid_to"]
+    )
+    duplicated_key = merged.duplicated(
+        ["country", "variable", "source", "statistic", "year", "survey_date"],
+        keep=False,
+    )
+    merged = merged[in_range | ~duplicated_key].drop(
+        columns=["raw_variable", "valid_from", "valid_to"]
+    )
+    merged["mapping_status"] = merged["mapping_status"].fillna("unmapped")
+
+    unmapped = (merged["mapping_status"] == "unmapped").sum()
+    if unmapped:
+        print(f"WARNING: {unmapped:,} rows have no map entry")
+
+    target = Paths().output / "forecasters_concepts.parquet"
+    merged.to_parquet(target, index=False)
+    print(f"concepts: {len(merged):,} rows -> {target}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Consolidate output CSVs into Parquet files"
@@ -83,11 +130,18 @@ def main() -> None:
         choices=["forecasters", "forex"],
         help="Consolidate only one kind (default: both)",
     )
+    parser.add_argument(
+        "--concepts",
+        action="store_true",
+        help="Also build forecasters_concepts.parquet from the variable map",
+    )
     args = parser.parse_args()
 
     kinds = [args.kind] if args.kind else ["forecasters", "forex"]
     for kind in kinds:
         consolidate(kind)
+    if args.concepts:
+        build_concepts_layer()
 
 
 if __name__ == "__main__":

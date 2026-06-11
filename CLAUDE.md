@@ -20,7 +20,8 @@ inside the repo.
 ```bash
 uv run get-country-forecasts [--year YYYY] [--reload]   # xlsx → forecasters CSVs
 uv run get-forex-forecasts [--year YYYY] [--reload]     # xlsx → forex CSVs
-uv run consolidate-output     # all CSVs → data/output/{forecasters,forex}.parquet
+uv run consolidate-output [--concepts]  # CSVs → parquet (+concept layer)
+uv run build-variable-map     # update concept map skeleton after new data
 uv run decompress-files       # needs /Volumes/Main mounted
 uv run clean-xlsx-folder
 uv run save-to-bucket --year YYYY   # S3 upload (needs --extra aws)

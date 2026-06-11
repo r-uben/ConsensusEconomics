@@ -55,9 +55,31 @@ One row = one currency/horizon forecast against a reference currency.
 
 String columns with repeated values are stored as categoricals.
 
+## Concept layer (variable canonicalization)
+
+The raw Parquet is vintage-faithful: `variable` is whatever the workbook said
+that month. Cross-time concept identity lives in a separate, versioned
+judgment layer (FRED/ALFRED-style separation of series identity from labels):
+
+- `src/consensus_economics/mappings/variable_map.csv` — committed to git.
+  Keyed `(country, raw_variable, valid_from..valid_to)` → `concept_id`
+  (stable codes: `GDP`, `CPI`, `HICP`, `PPI`, `IP`, `RATE_3M`, ...), with
+  `mapping_status` (`confirmed` / `needs_review` / `new`), `break_type`
+  (e.g. `GERMAN_REUNIFICATION`), and an `evidence_note` per judgment.
+  Regenerate the skeleton after new data with `build-variable-map`
+  (existing judgments are preserved; only new pairs are appended).
+- `data/output/forecasters_concepts.parquet` — convenience layer from
+  `consolidate-output --concepts`: the raw panel pre-joined with
+  `concept_id`, `concept_label`, `mapping_status`. Use this for
+  cross-country panels; use the raw Parquet for vintage-faithful work.
+
+Rows with `mapping_status == "needs_review"` are open research judgments
+(UK CPI/RPI identity, Wholesale→Producer Prices renames, bare "Investment"
+labels) — filter or resolve them before relying on those concepts.
+
 ## Known caveats
 
-- Variable names are not canonicalized across vintages (see `variable` above).
-  Build a mapping before doing long cross-time panels on `variable`.
 - `Number of Forecasts` rows carry the panel count as `value` (a float).
-- Forecaster names also drift across decades (renames, mergers).
+- Forecaster names also drift across decades (renames, mergers) — there is
+  no canonicalization layer for `source` yet.
+- Feb 2010 (201002) is absent: the source workbook is corrupt (see CLAUDE.md).
