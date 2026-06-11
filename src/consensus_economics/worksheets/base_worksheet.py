@@ -8,7 +8,6 @@ from pandas import DataFrame
 
 from consensus_economics.paths import Paths
 
-
 # Module-level workbook cache to avoid reloading the same file
 _workbook_cache: Dict[str, Workbook] = {}
 

@@ -89,17 +89,3 @@ class Paths:
     def raw_xlsx(self) -> Path:
         """Raw extracted xlsx files (external)."""
         return self._external / "xlsx"
-
-    # -------------------------------------------------------------------------
-    # Backwards compatibility
-    # -------------------------------------------------------------------------
-
-    @property
-    def raw(self) -> Path:
-        """Deprecated: use raw_zip or raw_xlsx instead."""
-        return self._external
-
-    @property
-    def processed(self) -> Path:
-        """Deprecated: use xlsx or output instead."""
-        return self.data

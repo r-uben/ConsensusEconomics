@@ -13,9 +13,9 @@ def main() -> None:
     When files are downloaded multiple times, they may have numbers appended.
     This script removes those duplicates, keeping the original filename.
     """
-    processed_xlsx_path = Paths().processed / "xlsx"
+    xlsx_path = Paths().xlsx
 
-    for root, _, files in os.walk(processed_xlsx_path):
+    for root, _, files in os.walk(xlsx_path):
         for filename in files:
             if not filename.endswith(".xlsx"):
                 continue

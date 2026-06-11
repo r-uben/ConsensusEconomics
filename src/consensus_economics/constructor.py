@@ -2,8 +2,8 @@
 
 import calendar
 import os
+import shutil
 import zipfile
-from pathlib import Path
 
 from tqdm import tqdm
 
@@ -56,7 +56,8 @@ class FileProcessor:
         print(f"Extracted {len(zip_files)} files.")
         self.rename_files()
 
-    def _correct_date_format(self, filename: str, extension: str) -> str:
+    @staticmethod
+    def _correct_date_format(filename: str, extension: str) -> str:
         """
         Reformat filename to have year at the beginning.
 
@@ -71,6 +72,22 @@ class FileProcessor:
         year = parts[-4:]  # Year is last 4 characters
         new_filename = year + parts[:-4].replace("cf", "") + extension
         return new_filename
+
+    @classmethod
+    def format_filename(cls, filename: str) -> str:
+        """
+        Normalize a raw download name to YYYYMM.xlsx.
+
+        Args:
+            filename: Original filename (e.g., "cfJan2024.xlsx")
+
+        Returns:
+            Normalized filename (e.g., "202401.xlsx")
+        """
+        new_filename = filename.lower()
+        for i, month_name in enumerate(calendar.month_abbr[1:], 1):
+            new_filename = new_filename.replace(month_name.lower(), f"{i:02d}")
+        return cls._correct_date_format(new_filename, ".xlsx")
 
     def rename_files(self) -> None:
         """
@@ -88,21 +105,9 @@ class FileProcessor:
 
         for filename in tqdm(xlsx_files, desc="Renaming"):
             old_file_path = self.paths.raw_xlsx / filename
-            new_filename = filename.lower()
-
-            # Replace month names with numbers
-            for i, month_name in enumerate(calendar.month_abbr[1:], 1):
-                new_filename = new_filename.replace(
-                    month_name.lower(),
-                    f"{i:02d}",
-                )
-
-            # Move year to beginning
-            new_filename = self._correct_date_format(new_filename, ".xlsx")
-            new_file_path = self.paths.xlsx / new_filename
+            new_file_path = self.paths.xlsx / self.format_filename(filename)
 
             # Copy to local (don't delete from external)
-            import shutil
             shutil.copy2(old_file_path, new_file_path)
 
         print(f"Renamed {len(xlsx_files)} files to {self.paths.xlsx}")

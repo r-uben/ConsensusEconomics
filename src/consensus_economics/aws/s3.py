@@ -1,6 +1,7 @@
+import json
+
 import boto3
 import pandas as pd
-import json
 
 # Note: This code requires proper AWS credentials configuration to work
 # See: https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html
@@ -10,14 +11,14 @@ class S3:
     def __init__(self) -> None:
         self.__buckets = None
 
-    @property   
+    @property
     def buckets(self):
         if self.__buckets is None:
             s3 = boto3.client('s3')
             buckets = s3.list_buckets().get('Buckets', [])
             self.__buckets = pd.DataFrame([bucket['Name'] for bucket in buckets], columns=['name'])
         return self.__buckets
-    
+
     @property
     def secrets(self):
         client = boto3.client('secretsmanager')
@@ -27,7 +28,7 @@ class S3:
             return secrets
         else:
             return []
-        
+
     def get_secret(self, secret_name):
         client = boto3.client('secretsmanager')
         try:

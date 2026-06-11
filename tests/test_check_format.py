@@ -1,6 +1,5 @@
 """Tests for file format checking utilities."""
 
-import pytest
 
 from consensus_economics.utils.check_format import CheckFormatUtils
 
