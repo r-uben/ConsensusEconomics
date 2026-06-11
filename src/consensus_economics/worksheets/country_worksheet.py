@@ -48,9 +48,10 @@ class CountryWorksheet(BaseWorksheet):
             date_str = str(worksheet_data.iloc[3, 0]).strip()
             self._release_date = DateFormatUtils.parse_release_date(date_str)
         except Exception:
-            self._release_date = "Survey"
+            self._release_date = ""
 
         self._forecasters_data: Optional[DataFrame] = None
+        self._skipped_cells = 0
         self._worksheet = worksheet_data
 
     @property
@@ -70,6 +71,11 @@ class CountryWorksheet(BaseWorksheet):
     def release_date(self) -> str:
         """The formatted release date."""
         return self._release_date
+
+    @property
+    def skipped_cells(self) -> int:
+        """Number of non-empty cells that failed numeric conversion and were skipped."""
+        return self._skipped_cells
 
     def get_forecasters_data(self) -> DataFrame:
         """
@@ -120,13 +126,14 @@ class CountryWorksheet(BaseWorksheet):
 
         i = 1
         while i < len(summary_data.columns):
-            if summary_data[summary_data.columns[i]].isna().all().iloc[0]:
+            if self._first_column(summary_data[summary_data.columns[i]]).isna().all():
                 i += 1
                 continue
 
-            current_col = summary_data.columns[i]
-            next_col = summary_data.columns[i + 1] if i + 1 < len(summary_data.columns) else None
-            next_next_col = summary_data.columns[i + 2] if i + 2 < len(summary_data.columns) else None
+            columns = summary_data.columns
+            current_col = columns[i]
+            next_col = columns[i + 1] if i + 1 < len(columns) else None
+            next_next_col = columns[i + 2] if i + 2 < len(columns) else None
 
             is_triple = current_col == next_col and (
                 (next_col == next_next_col) or (next_next_col == "")
@@ -142,7 +149,7 @@ class CountryWorksheet(BaseWorksheet):
                 try:
                     if not is_triple:
                         if not self._is_na_value(current_value):
-                            value_float = float(current_value) if isinstance(current_value, str) else current_value
+                            value_float = self._to_float(current_value)
                             final_data.append({
                                 "type": stat_type,
                                 "variable": current_col,
@@ -163,7 +170,7 @@ class CountryWorksheet(BaseWorksheet):
 
                             for val, type_name in values:
                                 if pd.notna(val) and str(val).strip().lower() != "na":
-                                    value_float = float(val) if isinstance(val, str) else val
+                                    value_float = self._to_float(val)
                                     final_data.append({
                                         "type": type_name,
                                         "variable": current_col,
@@ -171,7 +178,7 @@ class CountryWorksheet(BaseWorksheet):
                                         "year": self.year,
                                     })
                 except (ValueError, TypeError):
-                    pass
+                    self._skipped_cells += 1
 
                 # Process next year value if exists and not triple
                 if next_col is not None and not is_triple:
@@ -181,7 +188,7 @@ class CountryWorksheet(BaseWorksheet):
 
                     try:
                         if not self._is_na_value(next_value):
-                            value_float = float(next_value) if isinstance(next_value, str) else next_value
+                            value_float = self._to_float(next_value)
                             final_data.append({
                                 "type": stat_type,
                                 "variable": current_col,
@@ -189,11 +196,11 @@ class CountryWorksheet(BaseWorksheet):
                                 "year": self.year + 1,
                             })
                     except (ValueError, TypeError):
-                        pass
+                        self._skipped_cells += 1
 
             # Process forecasters
             if current_col in forecasters_data.columns and not is_triple:
-                if not forecasters_data[current_col].isna().all().iloc[0]:
+                if not self._first_column(forecasters_data[current_col]).isna().all():
                     valid_forecasters = forecasters_data[
                         forecasters_data.iloc[:, 0].astype(str).str.strip() != ""
                     ]
@@ -206,7 +213,7 @@ class CountryWorksheet(BaseWorksheet):
 
                         try:
                             if not self._is_na_value(current_value):
-                                value_float = float(current_value) if isinstance(current_value, str) else current_value
+                                value_float = self._to_float(current_value)
                                 final_data.append({
                                     "type": forecaster,
                                     "variable": current_col,
@@ -214,7 +221,7 @@ class CountryWorksheet(BaseWorksheet):
                                     "year": self.year,
                                 })
                         except (ValueError, TypeError):
-                            pass
+                            self._skipped_cells += 1
 
                         if next_col is not None:
                             next_value = row[next_col]
@@ -223,7 +230,7 @@ class CountryWorksheet(BaseWorksheet):
 
                             try:
                                 if not self._is_na_value(next_value):
-                                    value_float = float(next_value) if isinstance(next_value, str) else next_value
+                                    value_float = self._to_float(next_value)
                                     final_data.append({
                                         "type": forecaster,
                                         "variable": current_col,
@@ -231,7 +238,7 @@ class CountryWorksheet(BaseWorksheet):
                                         "year": self.year + 1,
                                     })
                             except (ValueError, TypeError):
-                                pass
+                                self._skipped_cells += 1
 
             i += 3 if is_triple else 2
 
@@ -239,6 +246,20 @@ class CountryWorksheet(BaseWorksheet):
             return pd.DataFrame()
 
         return pd.DataFrame(final_data)
+
+    @staticmethod
+    def _to_float(value) -> float:
+        return float(value) if isinstance(value, str) else value
+
+    @staticmethod
+    def _first_column(data):
+        """First column of a duplicate-label selection; identity for a Series.
+
+        df[col] returns a DataFrame when the label is duplicated (the usual
+        current-year/next-year column pairs) but a Series when a sheet has a
+        variable with a single year column.
+        """
+        return data.iloc[:, 0] if isinstance(data, pd.DataFrame) else data
 
     @staticmethod
     def _is_na_value(value) -> bool:
@@ -292,7 +313,9 @@ class CountryWorksheet(BaseWorksheet):
         # Sort by variable, then source (Consensus first), then statistic
         stat_order = {"mean": 0, "std_dev": 1, "high": 2, "low": 3, "count": 4, "forecast": 5}
         self._forecasters_data["_sort"] = self._forecasters_data["statistic"].map(stat_order)
-        self._forecasters_data["_source_sort"] = (self._forecasters_data["source"] != "Consensus").astype(int)
+        self._forecasters_data["_source_sort"] = (
+            self._forecasters_data["source"] != "Consensus"
+        ).astype(int)
         self._forecasters_data = self._forecasters_data.sort_values(
             ["variable", "_source_sort", "_sort", "source"]
         ).drop(["_sort", "_source_sort"], axis=1)

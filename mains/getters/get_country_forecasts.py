@@ -2,7 +2,6 @@
 
 import argparse
 import os
-from pathlib import Path
 
 import pandas as pd
 from tqdm import tqdm
@@ -18,7 +17,21 @@ def process_country(date: str, country: str) -> tuple[str, pd.DataFrame]:
     """Process a single country's data for a given date."""
     try:
         data_consensus = CountryWorksheet(date, country)
-        return country, data_consensus.forecasters_data
+    except KeyError:
+        # Sheet absent in this vintage (coverage varies by year) — not an error
+        return country, pd.DataFrame()
+
+    try:
+        df = data_consensus.forecasters_data
+        if data_consensus.skipped_cells:
+            tqdm.write(
+                f"{date} {country}: skipped {data_consensus.skipped_cells} "
+                "non-numeric cells"
+            )
+        if df.empty:
+            # Sheet exists but yielded nothing — layout the parser can't read
+            tqdm.write(f"WARNING {date} {country}: sheet present but parsed to 0 rows")
+        return country, df
     except Exception as e:
         tqdm.write(f"Error processing {country}: {str(e)}")
         return country, pd.DataFrame()
@@ -28,8 +41,13 @@ def process_date(date: str, countries: list[str], reload: bool = False) -> None:
     """Process all countries for a given date."""
     try:
         year = date[:4]
-        folder = Paths().output / year / "forecasters"
+        paths = Paths()
+        folder = paths.output / year / "forecasters"
         filename = folder / f"{date}.csv"
+
+        if not (paths.xlsx / f"{date}.xlsx").exists():
+            tqdm.write(f"No xlsx file for {date}, skipping...")
+            return
 
         if filename.exists() and not reload:
             tqdm.write(f"File {filename} already exists, skipping...")
@@ -50,7 +68,13 @@ def process_date(date: str, countries: list[str], reload: bool = False) -> None:
         if all_data:
             final_df = pd.concat(all_data, ignore_index=True, copy=False)
             os.makedirs(folder, exist_ok=True)
-            final_df.dropna().to_csv(filename, index=False)
+            # Only a missing value invalidates a row; missing metadata (e.g.
+            # unit) must not silently drop observations
+            cleaned_df = final_df.dropna(subset=["value"])
+            dropped = len(final_df) - len(cleaned_df)
+            if dropped:
+                tqdm.write(f"{date}: dropped {dropped} rows with missing value")
+            cleaned_df.to_csv(filename, index=False)
             tqdm.write(f"Saved {len(all_data)} countries to {filename}")
         else:
             tqdm.write(f"No data to save for {date}")

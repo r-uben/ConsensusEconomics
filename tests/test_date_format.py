@@ -1,7 +1,6 @@
 """Tests for date formatting utilities."""
 
 import pandas as pd
-import pytest
 
 from consensus_economics.utils.date_format import DateFormatUtils
 
@@ -72,11 +71,11 @@ class TestParseReleaseDate:
         """Test text format without comma."""
         assert DateFormatUtils.parse_release_date("March 5 1990") == "19900305"
 
-    def test_invalid_format_returns_survey(self):
-        """Test invalid formats return 'Survey'."""
-        assert DateFormatUtils.parse_release_date("invalid") == "Survey"
-        assert DateFormatUtils.parse_release_date("") == "Survey"
-        assert DateFormatUtils.parse_release_date("2024") == "Survey"
+    def test_invalid_format_returns_empty(self):
+        """Test invalid formats return empty string."""
+        assert DateFormatUtils.parse_release_date("invalid") == ""
+        assert DateFormatUtils.parse_release_date("") == ""
+        assert DateFormatUtils.parse_release_date("2024") == ""
 
     def test_single_digit_day(self):
         """Test single digit days are zero-padded."""
@@ -88,14 +87,14 @@ class TestFormattedReleaseDate:
     """Tests for formatted_release_date function."""
 
     def test_empty_dataframe(self):
-        """Test empty DataFrame returns 'Survey'."""
+        """Test empty DataFrame returns empty string."""
         df = pd.DataFrame()
-        assert DateFormatUtils.formatted_release_date(df) == "Survey"
+        assert DateFormatUtils.formatted_release_date(df) == ""
 
     def test_single_column_dataframe(self):
-        """Test single column DataFrame returns 'Survey'."""
+        """Test single column DataFrame returns empty string."""
         df = pd.DataFrame({"col1": [1, 2, 3]})
-        assert DateFormatUtils.formatted_release_date(df) == "Survey"
+        assert DateFormatUtils.formatted_release_date(df) == ""
 
     def test_survey_date_extraction(self):
         """Test extraction from 'Survey Date:' row."""
@@ -105,10 +104,10 @@ class TestFormattedReleaseDate:
         })
         assert DateFormatUtils.formatted_release_date(df) == "20240315"
 
-    def test_no_survey_date_returns_survey(self):
-        """Test DataFrame without survey date returns 'Survey'."""
+    def test_no_survey_date_returns_empty(self):
+        """Test DataFrame without survey date returns empty string."""
         df = pd.DataFrame({
             0: ["Header", "Other", "Data"],
             1: ["Value", "Value", "Value"],
         })
-        assert DateFormatUtils.formatted_release_date(df) == "Survey"
+        assert DateFormatUtils.formatted_release_date(df) == ""

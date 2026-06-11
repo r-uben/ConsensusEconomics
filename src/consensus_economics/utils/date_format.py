@@ -1,7 +1,6 @@
 """Date formatting utilities for Consensus Economics data."""
 
 import re
-from typing import Optional
 
 import pandas as pd
 
@@ -51,7 +50,8 @@ class DateFormatUtils:
             date_str: Date string to parse
 
         Returns:
-            Date in YYYYMMDD format, or "Survey" if parsing fails
+            Date in YYYYMMDD format, or "" if parsing fails (empty keeps the
+            column single-typed instead of mixing dates with a sentinel word)
         """
         date_str = str(date_str).strip()
 
@@ -71,7 +71,7 @@ class DateFormatUtils:
             if month_num != "00":
                 return f"{year}{month_num}{int(day):02d}"
 
-        return "Survey"
+        return ""
 
     @staticmethod
     def formatted_release_date(df: pd.DataFrame) -> str:
@@ -82,11 +82,11 @@ class DateFormatUtils:
             df: DataFrame containing worksheet data (before cleaning)
 
         Returns:
-            Date in YYYYMMDD format, or "Survey" if extraction fails
+            Date in YYYYMMDD format, or "" if extraction fails
         """
         try:
             if df.empty or df.shape[1] < 2:
-                return "Survey"
+                return ""
 
             # Check for "Survey Date:" in first column
             survey_mask = df.iloc[:, 0].astype(str).str.contains("Survey Date:", na=False)
@@ -96,7 +96,7 @@ class DateFormatUtils:
                     date_str = str(df.iloc[row_idx, 1])
                     if pd.notna(date_str):
                         result = DateFormatUtils.parse_release_date(date_str)
-                        if result != "Survey":
+                        if result:
                             return result
 
             # Fallback: try column header
@@ -113,7 +113,7 @@ class DateFormatUtils:
                     except (IndexError, ValueError):
                         pass
 
-            return "Survey"
+            return ""
 
         except Exception:
-            return "Survey"
+            return ""

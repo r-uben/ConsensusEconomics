@@ -26,7 +26,7 @@ class ForexWorksheet(BaseWorksheet):
             date_str = str(worksheet_data.iloc[3, 0]).strip()
             self._release_date = DateFormatUtils.parse_release_date(date_str)
         except Exception:
-            self._release_date = "Survey"
+            self._release_date = ""
 
         self._forecasters_data: Optional[DataFrame] = None
         self._worksheet = worksheet_data
@@ -69,9 +69,9 @@ class ForexWorksheet(BaseWorksheet):
         result["current_value"] = result["current_value"].round(6)
         result["forecasted_value"] = result["forecasted_value"].round(6)
 
-        # Reorder columns: currency, reference, year, horizon, current_value, forecasted_value, release_date
         result = result[
-            ["currency", "reference", "year", "horizon", "current_value", "forecasted_value", "release_date"]
+            ["currency", "reference", "year", "horizon",
+             "current_value", "forecasted_value", "release_date"]
         ]
 
         return result
