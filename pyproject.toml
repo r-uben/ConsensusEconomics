@@ -9,6 +9,7 @@ dependencies = [
     "pandas>=2.2.3",
     "openpyxl>=3.1.2",
     "tqdm>=4.67.1",
+    "pyarrow>=18.0.0",
 ]
 
 [project.optional-dependencies]
@@ -16,12 +17,17 @@ dev = [
     "pytest>=8.0.0",
     "pytest-cov>=4.1.0",
 ]
+aws = [
+    "boto3>=1.35.0",
+]
 
 [project.scripts]
 decompress-files = "mains.preprocessing.decompress_files:main"
 clean-xlsx-folder = "mains.preprocessing.clean_xlsx_folder:main"
 get-country-forecasts = "mains.getters.get_country_forecasts:main"
 get-forex-forecasts = "mains.getters.get_forex_forecasts:main"
+consolidate-output = "mains.getters.consolidate_output:main"
+save-to-bucket = "mains.storage.save_to_bucket:main"
 
 [build-system]
 requires = ["hatchling"]

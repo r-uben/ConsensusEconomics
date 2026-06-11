@@ -7,7 +7,6 @@ Contains all configurable values: countries, currencies, date ranges, etc.
 from pathlib import Path
 from typing import Dict, List
 
-
 # Storage paths
 EXTERNAL_STORAGE: Path = Path("/Volumes/Main/Library/Databases/consensus_economics")
 
@@ -77,7 +76,7 @@ MONTH_MAP: Dict[str, str] = {
 
 # Data collection year range
 START_YEAR: int = 1990
-END_YEAR: int = 2026  # Exclusive upper bound
+END_YEAR: int = 2027  # Exclusive upper bound
 
 # Summary statistics labels in worksheets
 SUMMARY_STATS: frozenset = frozenset({

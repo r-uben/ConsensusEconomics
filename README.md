@@ -12,14 +12,16 @@ Python package for processing economic forecast data from Consensus Economics Ex
 ## Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/consensus-economics.git
 cd consensus-economics
 
-# Create virtual environment and install
-uv venv
-uv pip install -e ".[dev]"
+# Venv lives outside the repo (iCloud corrupts in-repo venvs)
+uv venv ~/venvs/consensus-economics --python 3.12
+export UV_PROJECT_ENVIRONMENT=~/venvs/consensus-economics
+uv sync --extra dev --extra aws
 ```
+
+Set `UV_PROJECT_ENVIRONMENT` before every `uv` command in this repo (or wire it
+up with direnv).
 
 ## Storage Layout
 
@@ -55,7 +57,15 @@ uv run get-country-forecasts --year 2024
 
 # Extract forex forecasts to CSV
 uv run get-forex-forecasts --year 2024
+
+# Consolidate all CSVs into data/output/{forecasters,forex}.parquet
+uv run consolidate-output
+
+# Upload processed CSVs to S3 (requires the aws extra)
+uv run save-to-bucket --year 2024
 ```
+
+Output format: see [SCHEMA.md](SCHEMA.md) for the full data dictionary.
 
 ### Python API
 
@@ -121,6 +131,7 @@ uv run pytest tests/ -v
 - pandas
 - openpyxl
 - tqdm
+- boto3 (optional, `aws` extra — only for S3 upload)
 
 ## License
 
