@@ -23,6 +23,11 @@ Corpus covers **Jan 1990 – Jun 2026**. Known gaps and open items:
 - The S3 bucket's per-month processed CSVs predate the 2026 schema
   regeneration (old schema, Jan 2025 vintage); refresh with `save-to-bucket`
   (`AWS_PROFILE=personal`) or sync `data/output/` wholesale.
+- **PDF archive is partial.** `s3://consensus-economics/pdf/` holds only
+  Apr 2025 onward (9 issues, named `YYYYMM.pdf`); the pipeline itself is
+  xlsx-only, so this affects nothing downstream. Whether the 1990–2024 PDF
+  back-catalog exists inside the original zips on `/Volumes/Main` is
+  unverified — check next time the volume is mounted.
 
 ## Features
 
