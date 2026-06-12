@@ -2,6 +2,28 @@
 
 Python package for processing economic forecast data from Consensus Economics Excel files.
 
+## Data status (as of June 2026)
+
+Corpus covers **Jan 1990 – Jun 2026**. Known gaps and open items:
+
+- **Feb 2010 (`201002`) — missing.** The source workbook is corrupt (sheet
+  names misaligned, all cached values stripped); the S3 backup is the same
+  broken export. Fix: re-download the Feb 2010 *Consensus Forecasts (G7 &
+  Western Europe)* issue, save as `data/xlsx/201002.xlsx`, re-run
+  `get-country-forecasts --year 2010 --reload` (and forex), then
+  `consolidate-output --concepts`.
+- **Jan 2026 (`202601`) — missing.** Never downloaded. Fix: download
+  `CFJan2026.xlsx`, same routine for year 2026.
+- **30 `needs_review` rows** in
+  `src/consensus_economics/mappings/variable_map.csv` — open concept-identity
+  judgments (bare "Investment" labels, "Indust / Manuf Production" scope,
+  Wholesale→Producer Prices continuity, US Employment Costs vs wages).
+  Edit status/notes in the CSV, then rebuild with
+  `consolidate-output --concepts`.
+- The S3 bucket's per-month processed CSVs predate the 2026 schema
+  regeneration (old schema, Jan 2025 vintage); refresh with `save-to-bucket`
+  (`AWS_PROFILE=personal`) or sync `data/output/` wholesale.
+
 ## Features
 
 - Parse country-specific economic forecasts (GDP, inflation, etc.)
