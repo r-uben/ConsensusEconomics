@@ -1,0 +1,282 @@
+country,raw_variable,valid_from,valid_to,concept_id,concept_label,unit_code,scale_factor,mapping_status,break_type,evidence_note,map_version
+Austria,Consumer Prices,2005-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Austria,Current Account,2005-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Austria,Gross Domestic Product,2005-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Austria,Indust / Manuf Production,2005-01-01,2026-06-01,IP,Indust / Manuf Production,,1,needs_review,,label covers industrial or manufacturing production depending on country,0.1
+Belgium,Consumer Prices,2005-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Belgium,Current Account,2005-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Belgium,Gross Domestic Product,2005-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Belgium,Indust / Manuf Production,2005-01-01,2026-06-01,IP,Indust / Manuf Production,,1,needs_review,,label covers industrial or manufacturing production depending on country,0.1
+Canada,10 Year Govt Bond Yield,1990-01-01,2026-06-01,GOV_BOND_10Y,10 Year Govt Bond Yield,,1,confirmed,,,0.1
+Canada,Budget Balance (Fiscal Years),1993-05-01,2026-06-01,GOV_BUDGET_BALANCE,Budget Balance (Fiscal Years),,1,confirmed,,fiscal-year basis,0.1
+Canada,Business Investment,1990-01-01,1993-07-01,INVESTMENT_BUSINESS,Business Investment,,1,confirmed,,,0.1
+Canada,Consumer Prices,1990-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Canada,Corporate Profits,1990-01-01,2026-06-01,CORP_PROFITS,Corporate Profits,,1,confirmed,,,0.1
+Canada,Current Account,1990-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Canada,Gross Domestic Product,1990-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Canada,Housing Starts,1990-01-01,2026-06-01,HOUSING_STARTS,Housing Starts,,1,confirmed,,,0.1
+Canada,Industrial Production,1990-01-01,2026-06-01,IP,Industrial Production,,1,confirmed,,,0.1
+Canada,Investment ,2005-01-01,2005-01-01,GFCF,Investment,,1,needs_review,,bare label; verify which investment aggregate,0.1
+Canada,Machinery & Equip. Investment,1993-08-01,2026-06-01,INVESTMENT_MACH_EQUIP,Machinery & Equip. Investment,,1,confirmed,,,0.1
+Canada,Manufacturing Production,1993-05-01,1995-09-01,MFG_PROD,Manufacturing Production,,1,confirmed,,,0.1
+Canada,Monetary Policy Evaluation Prob. of Rate Change at/before,2019-09-01,2026-06-01,POLICY_RATE_PROB,Monetary Policy Evaluation Prob. of Rate Change at/before,,1,confirmed,,,0.1
+Canada,Money Policy Evaluation Prob. of Rate Change in the,2003-11-01,2019-08-01,POLICY_RATE_PROB,Money Policy Evaluation Prob. of Rate Change in the,,1,confirmed,,,0.1
+Canada,Personal Expenditure,1990-01-01,2026-06-01,CONSUMPTION_PRIVATE,Personal Expenditure,,1,confirmed,,,0.1
+Canada,Producer Prices,1990-01-01,2026-06-01,PPI,Producer Prices,,1,confirmed,,,0.1
+Canada,Three month Interest Rates,1990-01-01,2026-06-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+Canada,Unemployment Rate,1990-01-01,2026-06-01,UNEMP_RATE,Unemployment Rate,,1,confirmed,,,0.1
+Canada,Wages ,2004-08-01,2026-06-01,WAGES,Wages,,1,confirmed,,,0.1
+Denmark,Consumer Prices,2005-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Denmark,Current Account,2005-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Denmark,Gross Domestic Product,2005-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Denmark,Indust / Manuf Production,2005-01-01,2026-06-01,IP,Indust / Manuf Production,,1,needs_review,,label covers industrial or manufacturing production depending on country,0.1
+Denmark,Three month Interest Rates,2020-07-01,2026-06-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+Egypt,Consumer Prices,2005-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Egypt,Current Account,2005-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Egypt,Gross Domestic Product,2005-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Egypt,Indust / Manuf Production,2005-02-01,2026-06-01,IP,Indust / Manuf Production,,1,needs_review,,label covers industrial or manufacturing production depending on country,0.1
+Euro Zone,10 Year Ger. Govt Bond Yield,2002-12-01,2026-06-01,GOV_BOND_10Y,10 Year Ger. Govt Bond Yield,,1,confirmed,,Euro Zone referenced to German Bund,0.1
+Euro Zone,3-month Int. Rates (Ger/Fra/It/Nld/Spa),2013-11-01,2026-06-01,RATE_3M,3-month Int. Rates (Ger/Fra/It/Nld/Spa),,1,confirmed,,euro legacy national rates,0.1
+Euro Zone,Change in Inventories,2002-12-01,2007-10-01,INVENTORIES,Change in Inventories,,1,confirmed,,,0.1
+Euro Zone,Consumer Prices,2002-12-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Euro Zone,Core HICP (ex food & energy),2018-06-01,2026-06-01,HICP_CORE,Core HICP (ex food & energy),,1,confirmed,,,0.1
+Euro Zone,Corporate Profits,2005-01-01,2005-01-01,CORP_PROFITS,Corporate Profits,,1,confirmed,,,0.1
+Euro Zone,Current Account,2002-12-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Euro Zone,Exports,2002-12-01,2026-06-01,EXPORTS,Exports,,1,confirmed,,,0.1
+Euro Zone,Gen. Gov Budget Balance,2002-12-01,2026-06-01,GOV_BUDGET_BALANCE,Gen. Gov Budget Balance,,1,confirmed,,general government,0.1
+Euro Zone,Government Consumption,2002-12-01,2026-06-01,CONSUMPTION_GOVT,Government Consumption,,1,confirmed,,,0.1
+Euro Zone,Gross Domestic Product,2002-12-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Euro Zone,Gross Fixed Investment,2002-12-01,2026-06-01,GFCF,Gross Fixed Investment,,1,confirmed,,,0.1
+Euro Zone,Imports,2002-12-01,2026-06-01,IMPORTS,Imports,,1,confirmed,,,0.1
+Euro Zone,Industrial Production,2002-12-01,2026-06-01,IP,Industrial Production,,1,confirmed,,,0.1
+Euro Zone,Investment ,2005-01-01,2005-01-01,GFCF,Investment,,1,needs_review,,bare label; verify which investment aggregate,0.1
+Euro Zone,Monetary Policy Evaluation Prob. of Rate Change at/before,2019-09-01,2026-06-01,POLICY_RATE_PROB,Monetary Policy Evaluation Prob. of Rate Change at/before,,1,confirmed,,,0.1
+Euro Zone,Money Policy Evaluation Prob. of Rate Change in the,2002-12-01,2019-08-01,POLICY_RATE_PROB,Money Policy Evaluation Prob. of Rate Change in the,,1,confirmed,,,0.1
+Euro Zone,Money Supply M3,2002-12-01,2026-06-01,MONEY_M3,Money Supply M3,,1,confirmed,,,0.1
+Euro Zone,Private Consumption,2002-12-01,2026-06-01,CONSUMPTION_PRIVATE,Private Consumption,,1,confirmed,,,0.1
+Euro Zone,Producer Prices,2002-12-01,2026-06-01,PPI,Producer Prices,,1,confirmed,,,0.1
+Euro Zone,Three month Interest Rates,2002-12-01,2013-10-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+Euro Zone,Unemployment Rate,2002-12-01,2026-06-01,UNEMP_RATE,Unemployment Rate,,1,confirmed,,,0.1
+Euro Zone,Wages ,2002-12-01,2026-06-01,WAGES,Wages,,1,confirmed,,,0.1
+Finland,Consumer Prices,2005-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Finland,Current Account,2005-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Finland,Gross Domestic Product,2005-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Finland,Indust / Manuf Production,2005-01-01,2026-06-01,IP,Indust / Manuf Production,,1,needs_review,,label covers industrial or manufacturing production depending on country,0.1
+France,10 Year Govt Bond Yield,1990-01-01,2026-06-01,GOV_BOND_10Y,10 Year Govt Bond Yield,,1,confirmed,,,0.1
+France,Budget Balance ,1993-05-01,2026-06-01,GOV_BUDGET_BALANCE,Budget Balance,,1,confirmed,,,0.1
+France,Business Investment,1990-01-01,2026-06-01,INVESTMENT_BUSINESS,Business Investment,,1,confirmed,,,0.1
+France,Consumer Prices,1990-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+France,Current Account,1990-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+France,Gross Domestic Product,1990-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+France,Household Consumption,1990-02-01,2026-06-01,CONSUMPTION_PRIVATE,Household Consumption,,1,confirmed,,,0.1
+France,Industrial Production,1990-01-01,2026-06-01,IP,Industrial Production,,1,confirmed,,,0.1
+France,Investment ,2005-01-01,2005-01-01,GFCF,Investment,,1,needs_review,,bare label; verify which investment aggregate,0.1
+France,Private Consumption,1990-01-01,1990-01-01,CONSUMPTION_PRIVATE,Private Consumption,,1,confirmed,,,0.1
+France,Producer Prices,2005-01-01,2005-01-01,PPI,Producer Prices,,1,confirmed,,,0.1
+France,Three month Interest Rates,1990-01-01,2026-06-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+France,Unemployment Rate,1990-01-01,2026-06-01,UNEMP_RATE,Unemployment Rate,,1,confirmed,,,0.1
+France,Wages ,1990-01-01,2026-06-01,WAGES,Wages,,1,confirmed,,,0.1
+Germany,10 Year Govt Bond Yield,1990-01-01,2026-06-01,GOV_BOND_10Y,10 Year Govt Bond Yield,,1,confirmed,,,0.1
+Germany,Budget Balance ,1993-05-01,2026-06-01,GOV_BUDGET_BALANCE,Budget Balance,,1,confirmed,,,0.1
+Germany,Car Sales,1995-09-01,1997-07-01,CAR_SALES,Car Sales,,1,confirmed,,,0.1
+Germany,Consumer Prices,1996-10-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Germany,Corporate Profits,1997-07-01,1997-07-01,CORP_PROFITS,Corporate Profits,,1,confirmed,,,0.1
+Germany,Current Account,1991-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Germany,Gross Domestic Product,1997-05-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Germany,Housing Starts,1997-07-01,1997-07-01,HOUSING_STARTS,Housing Starts,,1,confirmed,,,0.1
+Germany,Industrial Production,1995-10-01,2026-06-01,IP,Industrial Production,,1,confirmed,,,0.1
+Germany,Investment ,2005-01-01,2005-01-01,GFCF,Investment,,1,needs_review,,bare label; verify which investment aggregate,0.1
+Germany,Machinery & Equip. Investment,1995-10-01,2026-06-01,INVESTMENT_MACH_EQUIP,Machinery & Equip. Investment,,1,confirmed,,,0.1
+Germany,Private Consumption,1995-10-01,2026-06-01,CONSUMPTION_PRIVATE,Private Consumption,,1,confirmed,,,0.1
+Germany,Producer Prices,1996-10-01,2026-06-01,PPI,Producer Prices,,1,confirmed,,,0.1
+Germany,Three month Interest Rates,1990-01-01,2026-06-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+Germany,Unemployment Rate,1991-03-01,2026-06-01,UNEMP_RATE,Unemployment Rate,,1,confirmed,,,0.1
+Germany,Wages ,1998-01-01,2026-06-01,WAGES,Wages,,1,confirmed,,,0.1
+Germany,West German Business Investment,1990-01-01,1993-07-01,INVESTMENT_BUSINESS,West German Business Investment,,1,confirmed,GERMAN_REUNIFICATION,West Germany basis; pre-unification series,0.1
+Germany,West German Consumer Prices,1990-01-01,1996-09-01,CPI,West German Consumer Prices,,1,confirmed,GERMAN_REUNIFICATION,West Germany basis; pre-unification series,0.1
+Germany,West German Current Account,1990-01-01,1990-12-01,CURRENT_ACCOUNT,West German Current Account,,1,confirmed,GERMAN_REUNIFICATION,West Germany basis; pre-unification series,0.1
+Germany,West German Gross Domestic Product,1993-01-01,1997-04-01,GDP,West German Gross Domestic Product,,1,confirmed,GERMAN_REUNIFICATION,West Germany basis; pre-unification series,0.1
+Germany,West German Gross National Product,1990-01-01,1992-12-01,GNP,West German Gross National Product,,1,confirmed,GERMAN_REUNIFICATION,West Germany basis; pre-unification series,0.1
+Germany,West German Industrial Production,1990-01-01,1995-09-01,IP,West German Industrial Production,,1,confirmed,GERMAN_REUNIFICATION,West Germany basis; pre-unification series,0.1
+Germany,West German Machinery & Equip. Investment,1993-08-01,1995-09-01,INVESTMENT_MACH_EQUIP,West German Machinery & Equip. Investment,,1,confirmed,GERMAN_REUNIFICATION,West Germany basis; pre-unification series,0.1
+Germany,West German Private Consumption,1990-01-01,1995-09-01,CONSUMPTION_PRIVATE,West German Private Consumption,,1,confirmed,GERMAN_REUNIFICATION,West Germany basis; pre-unification series,0.1
+Germany,West German Producer Prices,1990-01-01,1996-09-01,PPI,West German Producer Prices,,1,confirmed,GERMAN_REUNIFICATION,West Germany basis; pre-unification series,0.1
+Germany,West German Unemployment Rate,1990-01-01,1991-02-01,UNEMP_RATE,West German Unemployment Rate,,1,confirmed,GERMAN_REUNIFICATION,West Germany basis; pre-unification series,0.1
+Germany,West German Wages ,1991-12-01,1997-12-01,WAGES,West German Wages,,1,confirmed,GERMAN_REUNIFICATION,West Germany basis; pre-unification series,0.1
+Greece,Consumer Prices,2005-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Greece,Current Account,2005-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Greece,Gross Domestic Product,2005-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Greece,Indust / Manuf Production,2005-01-01,2026-06-01,IP,Indust / Manuf Production,,1,needs_review,,label covers industrial or manufacturing production depending on country,0.1
+Ireland,Consumer Prices,2005-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Ireland,Current Account,2005-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Ireland,Gross Domestic Product,2005-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Ireland,Indust / Manuf Production,2005-01-01,2026-06-01,IP,Indust / Manuf Production,,1,needs_review,,label covers industrial or manufacturing production depending on country,0.1
+Israel,Consumer Prices,2005-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Israel,Current Account,2005-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Israel,Gross Domestic Product,2005-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Israel,Indust / Manuf Production,2005-01-01,2025-12-01,IP,Indust / Manuf Production,,1,needs_review,,label covers industrial or manufacturing production depending on country,0.1
+Israel,Three month Interest Rates,2020-07-01,2026-06-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+Italy,10 Year Govt Bond Yield,1990-01-01,2026-06-01,GOV_BOND_10Y,10 Year Govt Bond Yield,,1,confirmed,,,0.1
+Italy,Budget Balance ,1993-05-01,2026-06-01,GOV_BUDGET_BALANCE,Budget Balance,,1,confirmed,,,0.1
+Italy,Consumer Prices,1990-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Italy,Consumer Spending,1990-01-01,1993-01-01,CONSUMPTION_PRIVATE,Consumer Spending,,1,confirmed,,,0.1
+Italy,Corporate Profits,2000-04-01,2000-04-01,CORP_PROFITS,Corporate Profits,,1,confirmed,,,0.1
+Italy,Current Account,1990-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Italy,Gross Domestic Product,1990-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Italy,Gross Fixed Investment,1990-01-01,2026-06-01,GFCF,Gross Fixed Investment,,1,confirmed,,,0.1
+Italy,Household Consumption,1999-07-01,2026-06-01,CONSUMPTION_PRIVATE,Household Consumption,,1,confirmed,,,0.1
+Italy,Industrial Production,1990-01-01,2026-06-01,IP,Industrial Production,,1,confirmed,,,0.1
+Italy,Investment ,2005-01-01,2005-01-01,GFCF,Investment,,1,needs_review,,bare label; verify which investment aggregate,0.1
+Italy,Private Consumption,1993-02-01,1999-06-01,CONSUMPTION_PRIVATE,Private Consumption,,1,confirmed,,,0.1
+Italy,Producer Prices,1991-04-01,2026-06-01,PPI,Producer Prices,,1,confirmed,,,0.1
+Italy,Three month Interest Rates,1990-01-01,2026-06-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+Italy,Unemployment Rate,1990-01-01,2026-06-01,UNEMP_RATE,Unemployment Rate,,1,confirmed,,,0.1
+Italy,Wages ,1993-03-01,2026-06-01,WAGES,Wages,,1,confirmed,,,0.1
+Italy,Wholesale Prices,1990-01-01,1991-03-01,PPI,Wholesale Prices,,1,needs_review,,renamed Wholesale->Producer Prices mid-1990s; verify series continuity,0.1
+Japan,10 Year Govt Bond Yield,1990-01-01,2026-06-01,GOV_BOND_10Y,10 Year Govt Bond Yield,,1,confirmed,,,0.1
+Japan,Budget Balance (Fiscal Years),1993-05-01,2026-06-01,GOV_BUDGET_BALANCE,Budget Balance (Fiscal Years),,1,confirmed,,fiscal-year basis,0.1
+Japan,Business Investment,1990-01-01,2026-06-01,INVESTMENT_BUSINESS,Business Investment,,1,confirmed,,,0.1
+Japan,Car Sales,2005-01-01,2005-01-01,CAR_SALES,Car Sales,,1,confirmed,,,0.1
+Japan,Car Sales Registrations,2004-01-01,2004-12-01,CAR_SALES,Car Sales Registrations,,1,confirmed,,,0.1
+Japan,Consumer Prices,1990-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Japan,Core-core CPI (ex food & energy),2018-06-01,2026-06-01,CPI_CORE_CORE,Core-core CPI (ex food & energy),,1,confirmed,,,0.1
+Japan,Current Account,1990-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Japan,Gross Domestic Product,1994-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Japan,Gross National Product,1990-01-01,1993-12-01,GNP,Gross National Product,,1,confirmed,,,0.1
+Japan,Housing Starts,1991-12-01,2026-06-01,HOUSING_STARTS,Housing Starts,,1,confirmed,,,0.1
+Japan,Industrial Production,1990-01-01,2026-06-01,IP,Industrial Production,,1,confirmed,,,0.1
+Japan,Investment ,2005-01-01,2005-01-01,GFCF,Investment,,1,needs_review,,bare label; verify which investment aggregate,0.1
+Japan,Monetary Policy Evaluation Prob. of Rate Change at/before,2025-02-01,2026-06-01,POLICY_RATE_PROB,Monetary Policy Evaluation Prob. of Rate Change at/before,,1,confirmed,,,0.1
+Japan,New Car Registrations,1991-12-01,2024-03-01,CAR_SALES,New Car Registrations,,1,confirmed,,,0.1
+Japan,Private Consumption,1990-01-01,2026-06-01,CONSUMPTION_PRIVATE,Private Consumption,,1,confirmed,,,0.1
+Japan,Three month Interest Rates,1990-01-01,2026-06-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+Japan,Trade Balance,2024-12-01,2026-06-01,TRADE_BALANCE,Trade Balance,,1,confirmed,,,0.1
+Japan,Unemployment Rate,1990-01-01,2026-06-01,UNEMP_RATE,Unemployment Rate,,1,confirmed,,,0.1
+Japan,Wages ,1991-12-01,2026-06-01,WAGES,Wages,,1,confirmed,,,0.1
+Japan,Wholesale Prices,1990-01-01,2026-06-01,PPI,Wholesale Prices,,1,needs_review,,renamed Wholesale->Producer Prices mid-1990s; verify series continuity,0.1
+Netherlands,10 Year Govt Bond Yield,1995-01-01,2026-06-01,GOV_BOND_10Y,10 Year Govt Bond Yield,,1,confirmed,,,0.1
+Netherlands,Consumer Prices,1990-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Netherlands,Current Account,1990-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Netherlands,Gen. Gov Budget Balance,2010-03-01,2026-06-01,GOV_BUDGET_BALANCE,Gen. Gov Budget Balance,,1,confirmed,,general government,0.1
+Netherlands,Gross Domestic Product,1990-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Netherlands,Gross Fixed Investment,1994-12-01,2026-06-01,GFCF,Gross Fixed Investment,,1,confirmed,,,0.1
+Netherlands,Household Consumption,1999-07-01,2001-02-01,CONSUMPTION_PRIVATE,Household Consumption,,1,confirmed,,,0.1
+Netherlands,Investment ,2005-01-01,2005-01-01,GFCF,Investment,,1,needs_review,,bare label; verify which investment aggregate,0.1
+Netherlands,Manufacturing Production,1994-12-01,2026-06-01,MFG_PROD,Manufacturing Production,,1,confirmed,,,0.1
+Netherlands,Private Consumption,1994-12-01,2026-06-01,CONSUMPTION_PRIVATE,Private Consumption,,1,confirmed,,,0.1
+Netherlands,Three month Interest Rates,1990-01-01,2026-06-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+Netherlands,Wages ,1994-12-01,2026-06-01,WAGES,Wages,,1,confirmed,,,0.1
+Nigeria,Consumer Prices,2005-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Nigeria,Current Account,2005-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Nigeria,Gross Domestic Product,2005-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Nigeria,Indust / Manuf Production,2005-02-01,2016-11-01,IP,Indust / Manuf Production,,1,needs_review,,label covers industrial or manufacturing production depending on country,0.1
+Norway,10 Year Govt Bond Yield,1998-06-01,2026-06-01,GOV_BOND_10Y,10 Year Govt Bond Yield,,1,confirmed,,,0.1
+Norway,Budget Balance ,2010-03-01,2026-06-01,GOV_BUDGET_BALANCE,Budget Balance,,1,confirmed,,,0.1
+Norway,Consumer Prices,1990-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Norway,Current Account,1990-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Norway,GDP (Total),2023-12-01,2026-06-01,GDP,GDP (Total),,1,confirmed,,,0.1
+Norway,Gross Domestic Product,1990-01-01,1998-05-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Norway,Gross Domestic Product (Mainland),1998-06-01,2026-06-01,GDP_MAINLAND,Gross Domestic Product (Mainland),,1,confirmed,,,0.1
+Norway,Gross Fixed Investment,1998-06-01,2026-06-01,GFCF,Gross Fixed Investment,,1,confirmed,,,0.1
+Norway,Investment ,2005-01-01,2005-01-01,GFCF,Investment,,1,needs_review,,bare label; verify which investment aggregate,0.1
+Norway,Manufacturing Production,1998-06-01,2026-06-01,MFG_PROD,Manufacturing Production,,1,confirmed,,,0.1
+Norway,Private Consumption,1998-06-01,2026-06-01,CONSUMPTION_PRIVATE,Private Consumption,,1,confirmed,,,0.1
+Norway,Three month Interest Rates,1998-06-01,2026-06-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+Norway,Wages ,1998-06-01,2026-06-01,WAGES,Wages,,1,confirmed,,,0.1
+Portugal,Consumer Prices,2005-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Portugal,Current Account,2005-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Portugal,Gross Domestic Product,2005-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Portugal,Indust / Manuf Production,2005-01-01,2025-10-01,IP,Indust / Manuf Production,,1,needs_review,,label covers industrial or manufacturing production depending on country,0.1
+Saudi Arabia,Consumer Prices,2005-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Saudi Arabia,Current Account,2005-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Saudi Arabia,Gross Domestic Product,2005-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Saudi Arabia,Indust / Manuf Production,2005-02-01,2016-11-01,IP,Indust / Manuf Production,,1,needs_review,,label covers industrial or manufacturing production depending on country,0.1
+South Africa,Consumer Prices,2005-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+South Africa,Current Account,2005-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+South Africa,Gross Domestic Product,2005-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+South Africa,Indust / Manuf Production,2005-01-01,2026-06-01,IP,Indust / Manuf Production,,1,needs_review,,label covers industrial or manufacturing production depending on country,0.1
+South Africa,Three month Interest Rates,2020-07-01,2026-06-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+Spain,10 Year Govt Bond Yield,1995-01-01,2026-06-01,GOV_BOND_10Y,10 Year Govt Bond Yield,,1,confirmed,,,0.1
+Spain,Consumer Prices,1990-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Spain,Current Account,1990-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Spain,Gen. Gov Budget Balance,2010-03-01,2026-06-01,GOV_BUDGET_BALANCE,Gen. Gov Budget Balance,,1,confirmed,,general government,0.1
+Spain,Gross Domestic Product,1990-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Spain,Gross Fixed Investment,1994-12-01,2026-06-01,GFCF,Gross Fixed Investment,,1,confirmed,,,0.1
+Spain,Household Consumption,1998-07-01,2026-06-01,CONSUMPTION_PRIVATE,Household Consumption,,1,confirmed,,,0.1
+Spain,Industrial Production,1994-12-01,2026-06-01,IP,Industrial Production,,1,confirmed,,,0.1
+Spain,Investment ,2005-01-01,2005-01-01,GFCF,Investment,,1,needs_review,,bare label; verify which investment aggregate,0.1
+Spain,Private Consumption,1994-12-01,1998-06-01,CONSUMPTION_PRIVATE,Private Consumption,,1,confirmed,,,0.1
+Spain,Three month Interest Rates,1990-01-01,2026-06-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+Spain,Unemployment Rate,2024-08-01,2026-06-01,UNEMP_RATE,Unemployment Rate,,1,confirmed,,,0.1
+Spain,Wages ,1994-12-01,2026-06-01,WAGES,Wages,,1,confirmed,,,0.1
+Sweden,10 Year Govt Bond Yield,1995-01-01,2026-06-01,GOV_BOND_10Y,10 Year Govt Bond Yield,,1,confirmed,,,0.1
+Sweden,Budget Balance ,2010-03-01,2026-06-01,GOV_BUDGET_BALANCE,Budget Balance,,1,confirmed,,,0.1
+Sweden,Consumer Prices,1990-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Sweden,Current Account,1990-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Sweden,Gross Domestic Product,1990-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Sweden,Gross Fixed Investment,1994-12-01,2026-06-01,GFCF,Gross Fixed Investment,,1,confirmed,,,0.1
+Sweden,Household Consumption,1998-07-01,2026-06-01,CONSUMPTION_PRIVATE,Household Consumption,,1,confirmed,,,0.1
+Sweden,Industrial Production,2003-01-01,2026-06-01,IP,Industrial Production,,1,confirmed,,,0.1
+Sweden,Investment ,2005-01-01,2005-01-01,GFCF,Investment,,1,needs_review,,bare label; verify which investment aggregate,0.1
+Sweden,Mining & Manuf. Production,1994-12-01,2004-12-01,MFG_PROD,Mining & Manuf. Production,,1,needs_review,,verify scope vs plain manufacturing production,0.1
+Sweden,Private Consumption,1994-12-01,1998-06-01,CONSUMPTION_PRIVATE,Private Consumption,,1,confirmed,,,0.1
+Sweden,Three month Interest Rates,1990-01-01,2026-06-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+Sweden,Wages ,1994-12-01,2026-06-01,WAGES,Wages,,1,confirmed,,,0.1
+Switzerland,10 Year Govt Bond Yield,1998-06-01,2026-06-01,GOV_BOND_10Y,10 Year Govt Bond Yield,,1,confirmed,,,0.1
+Switzerland,Budget Balance ,2010-03-01,2026-06-01,GOV_BUDGET_BALANCE,Budget Balance,,1,confirmed,,,0.1
+Switzerland,Consumer Prices,1990-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+Switzerland,Current Account,1990-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+Switzerland,GDP (Sports Adjusted),2023-11-01,2026-06-01,GDP,GDP (Sports Adjusted),,1,needs_review,,label likely vendor typo; verify intended series,0.1
+Switzerland,Gross Domestic Product,1990-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+Switzerland,Gross Fixed Investment,1998-06-01,2026-06-01,GFCF,Gross Fixed Investment,,1,confirmed,,,0.1
+Switzerland,Industrial Production,1998-06-01,2026-06-01,IP,Industrial Production,,1,confirmed,,,0.1
+Switzerland,Investment ,2005-01-01,2005-01-01,GFCF,Investment,,1,needs_review,,bare label; verify which investment aggregate,0.1
+Switzerland,Merchandise Exports,1998-06-01,2026-06-01,EXPORTS_MERCH,Merchandise Exports,,1,confirmed,,,0.1
+Switzerland,Private Consumption,1998-06-01,2026-06-01,CONSUMPTION_PRIVATE,Private Consumption,,1,confirmed,,,0.1
+Switzerland,Three month Interest Rates,1990-01-01,2026-06-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+Switzerland,Wages ,2005-01-01,2005-02-01,WAGES,Wages,,1,confirmed,,,0.1
+UK,10 Year Govt Bond Yield,1990-01-01,2026-06-01,GOV_BOND_10Y,10 Year Govt Bond Yield,,1,confirmed,,,0.1
+UK,Car Sales,1993-07-01,1994-12-01,CAR_SALES,Car Sales,,1,confirmed,,,0.1
+UK,Consumer Expenditure,1990-01-01,1998-09-01,CONSUMPTION_PRIVATE,Consumer Expenditure,,1,confirmed,,,0.1
+UK,Consumer Prices Index,2015-11-01,2026-06-01,CPI,Consumer Prices Index,,1,confirmed,,,0.1
+UK,Consumer Prices Index (HICP),2004-01-01,2021-06-01,HICP,Consumer Prices Index (HICP),,1,confirmed,,,0.1
+UK,Corporate Profits,1990-01-01,2026-06-01,CORP_PROFITS,Corporate Profits,,1,confirmed,,,0.1
+UK,Current Account,1990-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+UK,Gross Domestic Product,1990-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+UK,Gross Fixed Investment,1990-01-01,2026-06-01,GFCF,Gross Fixed Investment,,1,confirmed,,,0.1
+UK,Household Consumption,1998-10-01,2026-06-01,CONSUMPTION_PRIVATE,Household Consumption,,1,confirmed,,,0.1
+UK,Housing Starts,1993-07-01,1994-12-01,HOUSING_STARTS,Housing Starts,,1,confirmed,,,0.1
+UK,Investment ,2005-01-01,2005-01-01,GFCF,Investment,,1,needs_review,,bare label; verify which investment aggregate,0.1
+UK,Manufacturing Production,1990-01-01,2026-06-01,MFG_PROD,Manufacturing Production,,1,confirmed,,,0.1
+UK,Monetary Policy Evaluation Prob. of Rate Change at/before,2019-09-01,2026-06-01,POLICY_RATE_PROB,Monetary Policy Evaluation Prob. of Rate Change at/before,,1,confirmed,,,0.1
+UK,Money Policy Evaluation Prob. of Rate Change in the,2003-11-01,2019-08-01,POLICY_RATE_PROB,Money Policy Evaluation Prob. of Rate Change in the,,1,confirmed,,,0.1
+UK,PSNB (Fiscal Years),1993-05-01,1998-11-01,PSNB,PSNB (Fiscal Years),,1,confirmed,,,0.1
+UK,PSNB ex (Fiscal Years),2011-02-01,2026-06-01,PSNB_EX,PSNB ex (Fiscal Years),,1,confirmed,,,0.1
+UK,PSNCR (Fiscal Years),1998-12-01,2011-01-01,PSNCR,PSNCR (Fiscal Years),,1,confirmed,,,0.1
+UK,Producer Prices,1990-01-01,2026-06-01,PPI,Producer Prices,,1,confirmed,,,0.1
+UK,Retail Prices (Headline Rate),1990-01-01,1997-03-01,RPI,Retail Prices (Headline Rate),,1,confirmed,,,0.1
+UK,Retail Prices (RPIX),1997-04-01,2026-06-01,RPIX,Retail Prices (RPIX),,1,confirmed,,,0.1
+UK,Three month Interest Rates,1990-01-01,2026-06-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+UK,Unemployment Rate,1990-01-01,2026-06-01,UNEMP_RATE,Unemployment Rate,,1,confirmed,,,0.1
+UK,Wages ,1990-01-01,2026-06-01,WAGES,Wages,,1,confirmed,,,0.1
+USA,10 Year Govt Bond Yield,1990-01-01,2026-06-01,GOV_BOND_10Y,10 Year Govt Bond Yield,,1,confirmed,,,0.1
+USA,Budget Balance (Fiscal Years),1993-05-01,2026-06-01,GOV_BUDGET_BALANCE,Budget Balance (Fiscal Years),,1,confirmed,,fiscal-year basis,0.1
+USA,Business Investment,1990-01-01,2026-06-01,INVESTMENT_BUSINESS,Business Investment,,1,confirmed,,,0.1
+USA,Car Sales ,1990-01-01,2026-06-01,CAR_SALES,Car Sales,,1,confirmed,,,0.1
+USA,Consumer Prices,1990-01-01,2026-06-01,CPI,Consumer Prices,,1,confirmed,,,0.1
+USA,Core PCE Prices,2018-06-01,2026-06-01,PCE_CORE,Core PCE Prices,,1,confirmed,,,0.1
+USA,Corporate Profits,1990-01-01,2026-06-01,CORP_PROFITS,Corporate Profits,,1,confirmed,,,0.1
+USA,Current Account,1990-01-01,2026-06-01,CURRENT_ACCOUNT,Current Account,,1,confirmed,,,0.1
+USA,Employment Costs,1990-01-01,2026-06-01,WAGES,Employment Costs,,1,needs_review,,US employment cost index; different statistical concept from wage growth,0.1
+USA,Gross Domestic Product,1992-01-01,2026-06-01,GDP,Gross Domestic Product,,1,confirmed,,,0.1
+USA,Gross National Product,1990-01-01,1991-12-01,GNP,Gross National Product,,1,confirmed,,,0.1
+USA,Housing Starts,1990-01-01,2026-06-01,HOUSING_STARTS,Housing Starts,,1,confirmed,,,0.1
+USA,Industrial Production,1990-01-01,2026-06-01,IP,Industrial Production,,1,confirmed,,,0.1
+USA,Investment ,2005-01-01,2005-01-01,GFCF,Investment,,1,needs_review,,bare label; verify which investment aggregate,0.1
+USA,Monetary Policy Evaluation Prob. of Rate Change at/before,2019-09-01,2026-06-01,POLICY_RATE_PROB,Monetary Policy Evaluation Prob. of Rate Change at/before,,1,confirmed,,,0.1
+USA,Money Policy Evaluation Prob. of Rate Change at Next,2003-11-01,2003-12-01,POLICY_RATE_PROB,Money Policy Evaluation Prob. of Rate Change at Next,,1,confirmed,,,0.1
+USA,Money Policy Evaluation Prob. of Rate Change at/before,2004-01-01,2019-08-01,POLICY_RATE_PROB,Money Policy Evaluation Prob. of Rate Change at/before,,1,confirmed,,,0.1
+USA,Personal Consumption,1990-01-01,2026-06-01,CONSUMPTION_PRIVATE,Personal Consumption,,1,confirmed,,,0.1
+USA,Producer Prices,1990-01-01,2026-06-01,PPI,Producer Prices,,1,confirmed,,,0.1
+USA,Three month Interest Rates,1990-01-01,2026-06-01,RATE_3M,Three month Interest Rates,,1,confirmed,,,0.1
+USA,Unemployment Rate,1990-01-01,2026-06-01,UNEMP_RATE,Unemployment Rate,,1,confirmed,,,0.1

@@ -46,3 +46,6 @@ sensitive_info/
 .vscode/
 *.swp
 *.swo
+
+# The variable concept map is versioned judgment, not licensed data
+!src/consensus_economics/mappings/variable_map.csv
