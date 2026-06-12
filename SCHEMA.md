@@ -82,4 +82,3 @@ labels) — filter or resolve them before relying on those concepts.
 - `Number of Forecasts` rows carry the panel count as `value` (a float).
 - Forecaster names also drift across decades (renames, mergers) — there is
   no canonicalization layer for `source` yet.
-- Feb 2010 (201002) is absent: the source workbook is corrupt (see CLAUDE.md).
